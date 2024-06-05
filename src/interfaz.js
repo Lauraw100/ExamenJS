@@ -1,10 +1,7 @@
 import { LitElement, html, css } from "lit";
-import { materiaPrima } from "../forms/addMateriaPrima.js";
-import { CostosForm } from "../formsProd/costosIndi.js";
-import { DataDisplay } from "../reportes/datos.js";
-import { producto } from "../forms/addProduct.js";
-
-
+import { BmiCalculator } from "src/form/bmi-calculator.js";
+import { ImageGallery } from "src/form/galeria.js";
+import {  DynamicTable } from "src/form/tabla.js";
 export class Interfaz extends LitElement {
   static properties = {
     condition: {},
@@ -24,7 +21,6 @@ export class Interfaz extends LitElement {
     this.condition = true;
   }
 
-
   render() {
     return html`
     <link rel="stylesheet" href="style.css">
@@ -32,7 +28,7 @@ export class Interfaz extends LitElement {
       <nav class="navbar fixed-top">
         <div class="container-fluid">
           <div class="d-flex navr flex-column align-items-center justify-content-center">
-            <a id="nameLogo" class="navbar-brand ">Home</a>
+            <a id="nameLogo" class="navbar-brand ">Filtro</a>
             <img class="logo" src="public/img/logo.png" alt="">
           </div>
         </div>
@@ -50,17 +46,14 @@ export class Interfaz extends LitElement {
                  
                 </li>
                 <li class="has-subnav">
-                    <a class="llamar" href="#">
-                        <i class="fa fa-globe fa-2x"><img class="img" src="img/2mp.png" alt=""></i>
+                    <a class="" href="#">
                         <span class="nav-text">
                             Materia prima
                         </span>
                     </a>
-                   
                 </li>
                 <li class='costo' class="has-subnav">
                     <a href="#">
-                       <i class="fa fa-comments fa-2x"><img class="img" src="img/3cal.png" alt=""></i>
                         <span class="nav-text">
                             Cost Calculate
                         </span>
@@ -90,15 +83,15 @@ export class Interfaz extends LitElement {
         </div>
         <div class="info">
         <bmi-calculator>
-        
         </bmi-calculator>
+        ImageGallery
         </div>
       </div>
     `;
   }
   updated() {
     localStorage.clear()
-    customElements.define("home-component", HomeComponent);
+    customElements.define("bmi-calculator", BmiCalculator);
     const btnLlamar = this.shadowRoot.querySelector(".llamar");
     btnLlamar.addEventListener("click", (e) => {
       const divInfo = this.shadowRoot.querySelector(".info");
@@ -113,7 +106,7 @@ export class Interfaz extends LitElement {
       divInfo.innerHTML = "";
       const costdiv = document.createElement("cost-div");
       divInfo.appendChild(costdiv);
-      customElements.define("cost-div", vender);
+      customElements.define("cost-div", home);
     });
     const btninforme = this.shadowRoot.querySelector(".informes");
     btninforme.addEventListener("click", (e) => {
